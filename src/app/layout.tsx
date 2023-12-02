@@ -10,7 +10,7 @@ const inter = Inter({
 export const metadata = {
   title: "Lama Ai",
   description: "Best way to keep track of  your projects",
-  icons: [{ rel: "icon", url: "/images/logo.svg" }],
+  icons: [{ rel: "icon", url: "/favicon.svg" }],
 };
 
 export default function RootLayout({

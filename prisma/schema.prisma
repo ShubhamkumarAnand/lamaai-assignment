@@ -15,20 +15,21 @@ model User {
     createdAt DateTime @default(now())
 }
 
-model Projects {
-    id          String    @id @default(cuid())
-    name        String
-    projectList Project[]
-    updatedAt   DateTime  @updatedAt
+model Project {
+    id        String    @id @default(cuid())
+    name      String
+    episodes  Episode[]
+    updatedAt DateTime  @updatedAt
 }
 
-model Project {
-    id          String    @id @default(cuid())
+model Episode {
+    id          String   @id @default(cuid())
     name        String
     description String
-    status      String    @default("In Progress")
-    createdAt   DateTime  @default(now())
-    updatedAt   DateTime  @updatedAt
-    Projects    Projects? @relation(fields: [projectsId], references: [id])
-    projectsId  String?
+    status      String   @default("In Progress")
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+
+    Project   Project? @relation(fields: [projectId], references: [id])
+    projectId String?
 }
