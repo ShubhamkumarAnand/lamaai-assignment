@@ -1,37 +1,29 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
+import Logo from "~/components/Logo";
+import { db } from "~/server/db";
 
 export default function MyComponent() {
-  const [isModelOpen, setIsModelOpen] = useState(true);
+  const [isModelOpen, setIsModelOpen] = useState(false);
   const [projectName, setProjectName] = useState("");
 
-  const handleButtonClick = () => {
+  const handleButtonClick = async () => {
     console.log("Project Name:", projectName);
-    // Add logic to create a model or perform any other action here
-    // ...
-
-    // Close the modal
+    // todo: SERVER ACTIONS
+    // await db.projects.create({
+    //   data: {
+    //     name: projectName,
+    //   },
+    // });
     setIsModelOpen(false);
     setProjectName("");
   };
 
   return (
     <div className="flex flex-col bg-white pb-12 pl-8 pr-16 pt-7 max-md:px-5">
-      <div className="flex w-full items-start justify-between gap-5 self-stretch max-md:max-w-full max-md:flex-wrap">
-        <div className="flex items-stretch gap-2">
-          <Image
-            width={52}
-            height={52}
-            alt="logo"
-            loading="lazy"
-            src="/images/logo.svg"
-            className="aspect-square w-[53px] max-w-full shrink-0 overflow-hidden object-contain object-center"
-          />
-          <div className="my-auto text-4xl font-extrabold text-purple-700">
-            LAMA.
-          </div>
-        </div>
+      <div className="mb-12 flex w-full items-start justify-between gap-5 self-stretch max-md:max-w-full max-md:flex-wrap">
+        <Logo />
         <div className="flex items-center gap-5 self-end">
           <Image
             width={54}
@@ -81,43 +73,50 @@ export default function MyComponent() {
         veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
         commodo consequat. Duis aute irure dolor in reprehenderit in
       </div>
-      <div className="mb-16 mt-9 flex w-[570px] max-w-full items-stretch gap-4 self-center rounded-xl bg-gray-800 py-7 pl-8 pr-16 max-md:mb-10 max-md:flex-wrap max-md:px-5">
+      <button
+        onClick={() => setIsModelOpen(true)}
+        className="mb-16 mt-12 flex max-w-full items-stretch gap-4 self-center rounded-xl bg-gray-800 px-8 py-3 max-md:mb-10 max-md:flex-wrap max-md:px-5"
+      >
         <Image
           width={56}
           height={56}
           alt="plus button"
           loading="lazy"
           src="/images/buttons/plus.svg"
-          className="aspect-square w-14 max-w-full shrink-0 overflow-hidden fill-stone-50 object-contain object-center"
+          className="aspect-square max-w-full shrink-0 overflow-hidden fill-stone-50 object-contain object-center"
         />
-        <button
-          onClick={() => setIsModelOpen(true)}
-          className="mt-1 grow self-start whitespace-nowrap text-5xl font-semibold text-stone-50 max-md:text-4xl"
-        >
+        <p className="my-auto grow self-start whitespace-nowrap text-3xl font-semibold text-stone-50 max-md:text-4xl">
           Create New Project
-        </button>
-        {isModelOpen && (
-          <div className="fixed left-0 top-0 flex h-full w-full items-center justify-center">
-            <div className="w-full max-w-md rounded bg-white p-8">
-              <h2 className="mb-4 text-xl font-bold">Enter Project Name</h2>
-              <input
-                type="text"
-                className="mb-4 w-full border border-gray-300 p-2"
-                placeholder="Project Name"
-                value={projectName}
-                onChange={(e) => setProjectName(e.target.value)}
-              />
+        </p>
+      </button>
+      {isModelOpen && (
+        <div className="fixed left-0 top-0 flex h-full w-full items-center justify-center">
+          <div className="w-full max-w-md rounded bg-white p-8">
+            <h2 className="mb-4 text-xl font-bold">Enter Project Name</h2>
+            <input
+              type="text"
+              className="mb-4 w-full border border-gray-300 p-2"
+              placeholder="Project Name"
+              value={projectName}
+              required
+              onChange={(e) => setProjectName(e.target.value)}
+            />
 
-              <button
-                className="focus:shadow-outline rounded bg-green-500 px-4 py-2 font-bold text-white hover:bg-green-700 focus:outline-none"
-                onClick={handleButtonClick}
-              >
-                Create Model
-              </button>
-            </div>
+            <button
+              className="focus:shadow-outline rounded px-4 py-2 font-bold text-red-500 hover:text-red-700 focus:outline-none"
+              onClick={() => setIsModelOpen(false)}
+            >
+              Cancel
+            </button>
+            <button
+              className="focus:shadow-outline rounded bg-green-500 px-4 py-2 font-bold text-white hover:bg-green-700 focus:outline-none"
+              onClick={handleButtonClick}
+            >
+              Create Project
+            </button>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }
