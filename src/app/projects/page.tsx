@@ -28,7 +28,7 @@ export default async function Projects() {
               className="flex max-w-md gap-4 rounded-xl border-[1px] border-black p-2"
               key={project.id}>
               <p className="h-28 w-28 rounded-2xl bg-purple-700 text-white">
-                <p className="my-3 p-2 text-7xl font-semibold mx-3">
+                <p className="my-3 p-2 text-7xl font-semibold mx-auto">
                   {project.name.charAt(0).toUpperCase()}P
                 </p>
               </p>
