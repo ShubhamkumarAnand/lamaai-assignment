@@ -28,3 +28,20 @@ export function formatPrismaTime(dateTimeString: Date): string {
   const formattedMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
   return `${formattedHours}:${formattedMinutes} ${postFix}`;
 }
+
+export function getWeeksBehind(date: Date): string {
+  const currentDate = new Date();
+  const currentWeek = currentDate.getUTCDate();
+  const targetWeek = date.getUTCDate();
+  const weeksBehind = currentWeek - targetWeek;
+
+  if (weeksBehind <= 0) {
+    return "this week";
+  } else if (weeksBehind === 1) {
+    return `one weeks ago`;
+  } else if (weeksBehind === 2) {
+    return `two weeks ago`;
+  } else {
+    return "More than two weeks ago";
+  }
+}

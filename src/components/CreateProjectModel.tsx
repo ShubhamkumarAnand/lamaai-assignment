@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { db } from "~/server/db";
 
 export default function CreateProjectModel() {
   const [isModelOpen, setIsModelOpen] = useState(false);
@@ -10,11 +9,6 @@ export default function CreateProjectModel() {
 
   const handleButtonClick = async () => {
     console.log("Project Name:", projectName);
-    // await db.projects.create({
-    //   data: {
-    //     name: projectName,
-    //   },
-    // });
     setIsModelOpen(false);
     setProjectName("");
   };
@@ -23,27 +17,26 @@ export default function CreateProjectModel() {
     <div className="flex justify-center">
       <button
         onClick={() => setIsModelOpen(true)}
-        className="mb-16 mt-12 flex max-w-full items-stretch gap-4 self-center rounded-xl bg-gray-800 px-4 py-3 max-md:mb-10 max-md:flex-wrap max-md:px-5"
-      >
+        className="flex items-stretch self-center max-w-full gap-4 px-4 py-3 mt-12 mb-16 bg-gray-800 rounded-xl max-md:mb-10 max-md:flex-wrap max-md:px-5">
         <Image
           width={56}
           height={56}
           alt="plus button"
           loading="lazy"
           src="/images/buttons/plus.svg"
-          className="aspect-square max-w-full shrink-0 overflow-hidden fill-stone-50 object-contain object-center"
+          className="object-contain object-center max-w-full overflow-hidden aspect-square shrink-0 fill-stone-50"
         />
-        <p className="my-auto grow self-start whitespace-nowrap text-3xl font-semibold text-stone-50 max-md:text-4xl">
+        <p className="self-start my-auto text-3xl font-semibold grow whitespace-nowrap text-stone-50 max-md:text-4xl">
           Create New Project
         </p>
       </button>
       {isModelOpen && (
-        <div className="fixed left-0 top-0 flex h-full w-full items-center justify-center">
-          <div className="w-full max-w-md rounded bg-white p-8">
+        <div className="fixed top-0 left-0 flex items-center justify-center w-full h-full shadow-lg">
+          <div className="w-full max-w-md p-8 bg-white rounded">
             <h2 className="mb-4 text-xl font-bold">Enter Project Name</h2>
             <input
               type="text"
-              className="mb-4 w-full border border-gray-300 p-2"
+              className="w-full p-2 mb-4 border border-gray-300"
               placeholder="Project Name"
               value={projectName}
               required
@@ -51,15 +44,13 @@ export default function CreateProjectModel() {
             />
             <div className="flex justify-end">
               <button
-                className="focus:shadow-outline rounded px-4 py-2 font-semibold text-red-500 focus:outline-none"
-                onClick={() => setIsModelOpen(false)}
-              >
+                className="px-4 py-2 font-semibold text-red-500 rounded focus:shadow-outline focus:outline-none"
+                onClick={() => setIsModelOpen(false)}>
                 Cancel
               </button>
               <button
-                className="focus:shadow-outline rounded bg-purple-500 px-4 py-2 font-bold text-white hover:bg-purple-700 focus:outline-none"
-                onClick={handleButtonClick}
-              >
+                className="px-4 py-2 font-bold text-white bg-purple-500 rounded focus:shadow-outline hover:bg-purple-700 focus:outline-none"
+                onClick={handleButtonClick}>
                 Create
               </button>
             </div>
