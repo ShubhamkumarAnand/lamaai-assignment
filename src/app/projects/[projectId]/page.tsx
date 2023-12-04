@@ -2,7 +2,6 @@ import Link from "next/link";
 import EpisodeFeature from "~/components/EpisodeListFeatures";
 import EpisodeModel from "~/components/EpisodeModel";
 import EpisodeSidebar from "~/components/EpisodeSidebar";
-import Navbar from "~/components/Navbar";
 import { db } from "~/server/db";
 import Image from "next/image";
 import SideIcon from "~/components/SideIcon";
@@ -16,7 +15,9 @@ export default async function Project({ params }: { params: { projectId: string 
   return (
     <main>
       <div className="flex gap-6">
-        <EpisodeSidebar projectId={params.projectId} />
+        <div className="w-[440px]">
+          <EpisodeSidebar projectId={params.projectId} />
+        </div>
         <main className="flex flex-col mx-48">
           <header className=" flex justify-between mt-16 mb-12">
             <Link

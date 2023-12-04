@@ -1,10 +1,11 @@
 import Link from "next/link";
 import React from "react";
 import Logo from "~/components/Logo";
+import Image from "next/image";
 
 export default function EpisodeSidebar({ projectId }: { projectId: string }) {
   return (
-    <div className="flex flex-col items-start w-full px-4 bg-purple-100 rounded-none grow py-9 max-md:max-w-full max-md:mt-10 mb-16">
+    <div className="flex flex-col items-start w-full px-4 bg-purple-100 rounded-none grow py-9 max-md:max-w-full max-md:mt-10">
       <Logo />
       <div className="text-zinc-700 text-2xl font-medium leading-5 tracking-normal whitespace-nowrap ml-5 mt-8 self-start max-md:ml-2.5 ">
         Podcast Upload Flow L
@@ -52,9 +53,11 @@ export default function EpisodeSidebar({ projectId }: { projectId: string }) {
       <div className="bg-stone-300 self-center w-[403px] shrink-0 max-w-full h-px mt-[677px] max-md:mt-10" />
       <div className="flex items-stretch gap-3.5 ml-3.5 mt-8 self-start max-md:ml-2.5">
         <div className="justify-center items-center bg-zinc-900 bg-opacity-10 flex aspect-square flex-col w-10 h-10 px-2 rounded-[100px]">
-          <img
+          <Image
+            width={8}
+            height={8}
             loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/f568ca3ea8d090b191234fff4d5cc556748bbcd904df05dc5eec5e2f6589530d?apiKey=e3e0c9bbb92946ba8281185d5ecce439&"
+            src="/images/buttons/settings.svg"
             className="object-contain object-center w-full overflow-hidden aspect-square"
             alt="Settings"
           />
