@@ -1,3 +1,4 @@
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { Button } from "~/components/ui/button";
 import {
@@ -23,9 +24,7 @@ export default async function UserRegistrationModel() {
         email: userEmail,
       },
     });
-    if (isUserRegistered) {
-      redirect("/projects");
-    } else {
+    if (!isUserRegistered) {
       await db.user.create({
         data: {
           email: userEmail,
@@ -33,6 +32,8 @@ export default async function UserRegistrationModel() {
         },
       });
     }
+    revalidatePath("/projects");
+    redirect("/projects");
   };
   return (
     <Dialog>
