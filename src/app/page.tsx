@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Navbar from "~/components/Navbar";
-import ProjectModel from "~/components/ProjectModel";
+import UserRegistrationModel from "~/components/UserRegistrationModel";
 
 export default function MyComponent() {
   return (
@@ -22,7 +22,7 @@ export default function MyComponent() {
         dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
         aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
       </div>
-      <ProjectModel />
+      <UserRegistrationModel />
     </div>
   );
 }

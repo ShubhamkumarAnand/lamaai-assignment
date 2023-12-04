@@ -1,4 +1,6 @@
+import { Sidebar } from "lucide-react";
 import Link from "next/link";
+import EpisodeFeature from "~/components/EpisodeListFeatures";
 import EpisodeModel from "~/components/EpisodeModel";
 import Navbar from "~/components/Navbar";
 import { db } from "~/server/db";
@@ -12,6 +14,7 @@ export default async function Project({ params }: { params: { projectId: string 
   return (
     <main>
       <Navbar />
+      <Sidebar />
       <main className="flex flex-col mx-48">
         <div className="flex justify-between mb-10">
           <p className="text-5xl font-bold text-purple-700">Episodes</p>
@@ -32,10 +35,11 @@ export default async function Project({ params }: { params: { projectId: string 
             </Link>
           ))}
         </div>
-
+        <EpisodeFeature />
         <div className="flex items-center justify-center">
           <EpisodeModel projectId={params.projectId} />
         </div>
+        S
       </main>
     </main>
   );
