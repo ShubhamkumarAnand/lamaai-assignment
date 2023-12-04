@@ -17,7 +17,7 @@ export default async function UserRegistrationModel() {
     "use server";
     const userEmail = formData.get("email") as string;
     const userName = formData.get("username") as string;
-    // if user exists
+
     const isUserRegistered = await db.user.findFirst({
       where: {
         email: userEmail,
@@ -56,11 +56,17 @@ export default async function UserRegistrationModel() {
             <Label htmlFor="username" className="my-3 text-lg font-normal text-left">
               Username :
             </Label>
-            <Input id="username" name="username" placeholder="Type Here" className="text-xl" required />
+            <Input
+              id="username"
+              name="username"
+              placeholder="Your Username..."
+              className="text-xl"
+              required
+            />
             <Label htmlFor="email" className="my-3 text-lg font-normal text-left">
               Email :
             </Label>
-            <Input id="email" name="email" placeholder="your email id" required className="text-xl p-3" />
+            <Input id="email" name="email" placeholder="Your Email..." required className="text-xl p-3" />
           </div>
           <DialogFooter>
             <Button type="submit" className="mt-3 text-lg bg-purple-700">

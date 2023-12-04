@@ -11,7 +11,6 @@ import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 import Image from "next/image";
 import { db } from "~/server/db";
-import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 
 export default async function ProjectModel() {
@@ -24,7 +23,6 @@ export default async function ProjectModel() {
       },
     });
     revalidatePath("/projects");
-    redirect("/projects");
   };
   return (
     <Dialog>
